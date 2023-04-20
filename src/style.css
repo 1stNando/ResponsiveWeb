@@ -65,7 +65,7 @@ aside ul li a {
     /* Give some extra margin */
     margin: 1.5rem 0;
     /* Make the text transparent so it does not show and only our image is visible */
-    color: transparent;
+    /* color: transparent; */
   }
   /* Make the section element flexbox so the aside and the main will be in a row */
   section {
