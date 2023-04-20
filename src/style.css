@@ -49,6 +49,22 @@ aside ul {
   list-style: none;
 }
 
+/* Make the section element flexbox so the aside and the main will be in a row */
+section {
+  padding-top: 2rem;
+  display: flex;
+}
+/* Remove the margin for the aside and set it to just over 1/3 the width */
+aside {
+  margin: 0;
+  width: 35%;
+}
+/* Make the main part of the content the remainder of the width and use a slightly larger font */
+main {
+  font-size: 1.5rem;
+  width: 65%;
+}
+
 /* Format the list of team member links by removing the underline, a custom color and some padding */
 aside ul li a {
   color: #900;
@@ -67,19 +83,35 @@ aside ul li a {
     /* Make the text transparent so it does not show and only our image is visible */
     /* color: transparent; */
   }
-  /* Make the section element flexbox so the aside and the main will be in a row */
-  section {
-    padding-top: 2rem;
-    display: flex;
+
+  /* When wider than 1000 pixels, we will create an `after` element for all `a` elements in the team member list */
+  /* The content for this will be fetched from the `data-email` attribute */
+  @media all and (min-width: 1001px) {
+    aside ul li a:after {
+      content: ' (' attr(data-email) ')';
+      font-size: 11px;
+      font-style: italic;
+      color: #666;
+    }
   }
-  /* Remove the margin for the aside and set it to just over 1/3 the width */
-  aside {
-    margin: 0;
-    width: 35%;
+
+  /* When wider than 700 pixels but less than 1000px we will add the word `Email:` before the team member name */
+  @media all and (max-width: 1000px) and (min-width: 700px) {
+    aside ul li a:before {
+      content: 'Email: ';
+      font-style: italic;
+      color: #666;
+    }
   }
-  /* Make the main part of the content the remainder of the width and use a slightly larger font */
-  main {
-    font-size: 1.5rem;
-    width: 65%;
+
+  /* When the width is between 520 and 700 pixels, OR, the width is more than 1151 pixels */
+  /* Add a background image of an email icon on the left and add a little padding so the background image shows */
+  @media all and (max-width: 699px) and (min-width: 520px),
+    (min-width: 1151px) {
+    aside ul li a {
+      padding-left: 21px;
+      background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAsTAAALEwEAmpwYAAACS0lEQVQ4EaVSW24TMRQ9nnFmJknT5olIi9TSBz9IoILEMlgEq+CHBbAF+GUZlZCQkKACKapQX6QBlIdK27SaZDIzmZc5nvaPv/ZKtq+vfY7PvddCKYW7mHEXsMbKN++/fnRKle2LaVz2wsTIKCiDQkono7qUI6Ov9zdDQaRx7LsX/cNuF28/dLpMQ+398vSSW0hUTI+LIsl/1jnxlOvF6sWrd10pTLsepwqjywjVBYnWko0gBYiEyQQFZRpCQNLX+9PLOU7+ztGu8+76w7o8n8S1KMlwchrANIGSY2EWA2GkILnXID1KBQG7oHAw8NH5E+DZhgWrVK3JIEpgSYHHG3Xs9y5h86ntzUUEjJE3BzsaLIHdowm+9XxsrdWxtGBSZQrphyl0J+9Xbai1GvZIIljE51tVRJqAOVimwvefLj4fzbC1WkND380oU6enCXITink5WG4W8enHGAf9KSyDaXDs9z3sdMZo82yl4eTxaxDbOAuTa58qJl6Isg08edTC7vGEcQHWD18OJ3kMfHUehigWeUkbz1gD3XVgFkRwvQArrQpsq4B6xcL+yAPrh6ebDTSrDrwwwvBsCoPBLOOk2B0/nCfstZx6PtbbiwSzWizKatPB6j0nb6NilonKUCgX4CwvYnDmwp/b/ChxKv2r0e+xG64/aBSMkpVCGGn+qpYu9EQTfEwr0Wy1IlB1illvOJm7Z4OBjGfjwcvXO027Ui5L2xSSzTdYet17wxAwKEjT3HBpX6VJFAXu1fi8NxoK/lPNfWvLld0aTeA/EN804+GNd6sAAAAASUVORK5CYII=)
+        left center no-repeat;
+    }
   }
 }
